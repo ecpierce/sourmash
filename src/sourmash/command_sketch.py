@@ -349,7 +349,7 @@ def _compute_sigs(to_build, output, *, check_sequence=False):
 
             completed_count += 1
             sig_percent = (completed_count / total_to_build) * 100
-            notify(f'calculated {len(sigs)} signatures for {n+1} sequences in {filename}. Sigs for {sig_percent:.1f}% of files calculated.')
+            notify(f'calculated {len(sigs)} signatures for {n+1} sequences in {filename}. Signatures for {sig_percent:.1f}% of files calculated.')
 
 
     save_sigs.close()
