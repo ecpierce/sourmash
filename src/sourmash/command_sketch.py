@@ -302,7 +302,10 @@ def _compute_sigs(to_build, output, *, check_sequence=False):
     "actually build the signatures in 'to_build' and output them to 'output'"
     save_sigs = sourmash_args.SaveSignaturesToLocation(output)
     save_sigs.open()
-
+    
+    completed_count=0
+    total_to_build = len(to_build)
+  
     for (name, filename), param_objs in to_build.items():
         assert param_objs
 
@@ -344,7 +347,9 @@ def _compute_sigs(to_build, output, *, check_sequence=False):
             for sig in sigs:
                 save_sigs.add(sig)
 
-            notify(f'calculated {len(sigs)} signatures for {n+1} sequences in {filename}')
+            completed_count += 1
+            sig_percent = (completed_count / total_to_build) * 100
+            notify(f'calculated {len(sigs)} signatures for {n+1} sequences in {filename}. Sigs for {sig_percent:.1f}% of files calculated.')
 
 
     save_sigs.close()
